@@ -4,7 +4,7 @@
 
     import cerrarModal from '../assets/img/cerrar.svg'
 
-    const emit = defineEmits(['ocultar-modal', 'update:nombre', 'update:cantidad', 'update:categoria'])
+    const emit = defineEmits(['ocultar-modal', 'update:nombre', 'update:cantidad', 'update:categoria', 'guardar-gasto'])
 
     const props = defineProps({
         modal:{
@@ -46,6 +46,9 @@
             },2500)
             return
         }
+
+        emit('guardar-gasto')
+        console.log('emitiendo gasto')
     }
 </script>
 
@@ -88,7 +91,7 @@
                         placeholder="Añade la cantidad del gasto"
                         min="0"
                         :value="cantidad"
-                        @input="$emit('update:cantidad', $event.target.value)"
+                        @input="$emit('update:cantidad', +$event.target.value)"
                     />
                 </div>
                 <div class="campo">
